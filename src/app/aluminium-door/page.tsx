@@ -87,32 +87,46 @@ export default function AluminiumDoorPage() {
   }, [height, width, heightSoot, widthSoot, chaukhat, accessories, decorFilm, brownCoated, selectedThickness]);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <main className="mx-auto max-w-7xl px-6 py-8">
-        <div className="mb-6 flex items-center justify-between">
+    <div className="min-h-screen text-white relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="fixed inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
+      
+      <main className="relative mx-auto max-w-7xl px-6 py-12">
+        <div className="mb-8 flex items-center justify-between">
           <Link
             href="/"
-            className="rounded-full border-2 border-white px-4 py-2 text-sm font-medium transition hover:bg-white hover:text-black"
+            className="group rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:scale-105"
           >
-            ← Back to Home
+            <span className="flex items-center gap-2">
+              ← Back to Home
+            </span>
           </Link>
           <div className="flex justify-center">
-            <Image
-              src="/White Logo.png"
-              alt="Shiv Hardware Store Logo"
-              width={120}
-              height={120}
-              className="object-contain"
-            />
+            <div className="relative">
+              <div className="absolute inset-0 bg-white/10 blur-xl rounded-full"></div>
+              <Image
+                src="/White Logo.png"
+                alt="Shiv Hardware Store Logo"
+                width={120}
+                height={120}
+                className="relative object-contain drop-shadow-2xl"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="mb-4 text-center">
-          <h1 className="text-2xl font-bold">Bathroom Aluminium Door With Chaukhat</h1>
+        <div className="mb-8 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-2">Bathroom Aluminium Door</h1>
+          <p className="text-gray-400 text-lg">With Chaukhat</p>
         </div>
 
         {/* Input Section */}
-        <div className="mb-8 grid grid-cols-1 gap-6 border-2 border-white p-6 md:grid-cols-3">
+        <div className="mb-8 grid grid-cols-1 gap-6 rounded-2xl border border-white/20 bg-gradient-to-br from-black/50 via-[#0a0a0a]/50 to-black/50 p-8 backdrop-blur-sm shadow-2xl md:grid-cols-3">
           <div className="space-y-4">
             <div>
               <label className="mb-2 block text-sm font-medium">Operator Input</label>
@@ -125,12 +139,12 @@ export default function AluminiumDoorPage() {
                   type="number"
                   value={height}
                   onChange={(e) => setHeight(Number(e.target.value))}
-                  className="w-full rounded border-2 border-white bg-black px-3 py-2 text-white"
+                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white backdrop-blur-sm transition-all focus:border-white/40 focus:bg-white/10 focus:outline-none"
                 />
                 <select
                   value={heightSoot}
                   onChange={(e) => setHeightSoot(Number(e.target.value))}
-                  className="w-20 rounded border-2 border-white bg-black px-2 py-2 text-white"
+                  className="w-20 rounded-lg border border-white/20 bg-white/5 px-3 py-3 text-white backdrop-blur-sm transition-all focus:border-white/40 focus:bg-white/10 focus:outline-none"
                 >
                   <option value={0}>0</option>
                   <option value={1}>1/8</option>
@@ -157,12 +171,12 @@ export default function AluminiumDoorPage() {
                   type="number"
                   value={width}
                   onChange={(e) => setWidth(Number(e.target.value))}
-                  className="w-full rounded border-2 border-white bg-black px-3 py-2 text-white"
+                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white backdrop-blur-sm transition-all focus:border-white/40 focus:bg-white/10 focus:outline-none"
                 />
                 <select
                   value={widthSoot}
                   onChange={(e) => setWidthSoot(Number(e.target.value))}
-                  className="w-20 rounded border-2 border-white bg-black px-2 py-2 text-white"
+                  className="w-20 rounded-lg border border-white/20 bg-white/5 px-3 py-3 text-white backdrop-blur-sm transition-all focus:border-white/40 focus:bg-white/10 focus:outline-none"
                 >
                   <option value={0}>0</option>
                   <option value={1}>1/8</option>
@@ -180,7 +194,7 @@ export default function AluminiumDoorPage() {
               <select
                 value={selectedThickness}
                 onChange={(e) => setSelectedThickness(e.target.value as keyof typeof rates)}
-                className="w-full rounded border-2 border-white bg-black px-3 py-2 text-white"
+                className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white backdrop-blur-sm transition-all focus:border-white/40 focus:bg-white/10 focus:outline-none"
               >
                 <option value="1.2 MM">1.2 MM</option>
                 <option value="1.6 MM">1.6 MM</option>
@@ -224,20 +238,20 @@ export default function AluminiumDoorPage() {
         </div>
 
         {/* Results Table */}
-        <div className="mb-8 overflow-x-auto">
-          <table className="w-full border-2 border-white">
+        <div className="mb-8 overflow-x-auto rounded-2xl border border-white/20 bg-gradient-to-br from-black/50 via-[#0a0a0a]/50 to-black/50 backdrop-blur-sm shadow-2xl">
+          <table className="w-full">
             <thead>
-              <tr className="border-b-2 border-white">
-                <th className="border-r-2 border-white p-2 text-left"></th>
-                <th className="border-r-2 border-white p-2 text-center">1.2 MM</th>
-                <th className="border-r-2 border-white p-2 text-center">1.6 MM</th>
-                <th className="border-r-2 border-white p-2 text-center">1.2 MM Hindalco</th>
-                <th className="p-2"></th>
+              <tr className="border-b border-white/20">
+                <th className="border-r border-white/20 p-4 text-left font-semibold"></th>
+                <th className="border-r border-white/20 p-4 text-center font-semibold">1.2 MM</th>
+                <th className="border-r border-white/20 p-4 text-center font-semibold">1.6 MM</th>
+                <th className="border-r border-white/20 p-4 text-center font-semibold">1.2 MM Hindalco</th>
+                <th className="p-4"></th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-white">
-                <td className="border-r-2 border-white p-2">Door</td>
+              <tr className="border-b border-white/10">
+                <td className="border-r border-white/20 p-4">Door</td>
                 <td className="border-r-2 border-white p-2 text-center">
                   @{rates["1.2 MM"].door}
                 </td>
@@ -332,8 +346,9 @@ export default function AluminiumDoorPage() {
 
         {/* Add-ons Section */}
         <div className="mb-8">
-          <h2 className="mb-4 text-xl font-bold">Add-ons</h2>
-          <table className="w-full border-2 border-white">
+          <h2 className="mb-6 font-serif text-3xl font-bold">Add-ons</h2>
+          <div className="overflow-x-auto rounded-2xl border border-white/20 bg-gradient-to-br from-black/50 via-[#0a0a0a]/50 to-black/50 backdrop-blur-sm shadow-2xl">
+            <table className="w-full">
             <tbody>
               <tr className="border-b border-white">
                 <td className="border-r-2 border-white p-2">Décor Film</td>
@@ -383,10 +398,11 @@ export default function AluminiumDoorPage() {
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
 
         {/* Print Layout Section */}
-        <div className="border-2 border-white p-6">
+        <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-black/50 via-[#0a0a0a]/50 to-black/50 p-8 backdrop-blur-sm shadow-2xl">
           <div className="mb-4 space-y-2">
             <div>
               <span className="font-bold">Size - </span>
@@ -417,12 +433,13 @@ export default function AluminiumDoorPage() {
         </div>
 
         {/* Print Button */}
-        <div className="mt-6 text-center">
+        <div className="mt-8 text-center">
           <button
             onClick={() => window.print()}
-            className="rounded-full bg-white px-8 py-3 font-semibold text-black transition hover:bg-gray-200"
+            className="group relative rounded-full bg-white px-10 py-4 font-semibold text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
           >
-            Print Quote
+            <span className="relative z-10">Print Quote</span>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white to-gray-100 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </button>
         </div>
       </main>

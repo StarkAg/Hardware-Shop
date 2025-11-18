@@ -99,28 +99,42 @@ export default function Window3TrackPage() {
   const reflectiveRateHindalco = calculations.baseRate + baseRates["1.2 mm Hindalco"].reflective;
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <main className="mx-auto max-w-7xl px-6 py-8">
-        <div className="mb-6 flex items-center justify-between">
+    <div className="min-h-screen text-white relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="fixed inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
+      
+      <main className="relative mx-auto max-w-7xl px-6 py-12">
+        <div className="mb-8 flex items-center justify-between">
           <Link
             href="/"
-            className="rounded-full border-2 border-white px-4 py-2 text-sm font-medium transition hover:bg-white hover:text-black"
+            className="group rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:scale-105"
           >
-            ← Back to Home
+            <span className="flex items-center gap-2">
+              ← Back to Home
+            </span>
           </Link>
           <div className="flex justify-center">
-            <Image
-              src="/White Logo.png"
-              alt="Shiv Hardware Store Logo"
-              width={120}
-              height={120}
-              className="object-contain"
-            />
+            <div className="relative">
+              <div className="absolute inset-0 bg-white/10 blur-xl rounded-full"></div>
+              <Image
+                src="/White Logo.png"
+                alt="Shiv Hardware Store Logo"
+                width={120}
+                height={120}
+                className="relative object-contain drop-shadow-2xl"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="mb-4 text-center">
-          <h1 className="text-2xl font-bold">3 Track Aluminium Sliding Window With Half SS Net</h1>
+        <div className="mb-8 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-2">3 Track Aluminium Sliding Window</h1>
+          <p className="text-gray-400 text-lg">With Half SS Net</p>
         </div>
 
         {/* Input Section */}
