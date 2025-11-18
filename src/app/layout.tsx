@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   description: "Complete hardware solutions for modern builders. Configure custom doors and windows in seconds. Get accurate pricing and quotes for your construction projects in Ramgarh, Jharkhand.",
   icons: {
     icon: [
-      { url: "/White Logo.png", sizes: "any" },
-      { url: "/White Logo.png", type: "image/png", sizes: "192x192" },
-      { url: "/White Logo.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.png", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "192x192" },
+      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
     ],
     apple: [
-      { url: "/White Logo.png", sizes: "180x180", type: "image/png" },
+      { url: "/favicon.png", sizes: "180x180", type: "image/png" },
     ],
-    shortcut: "/White Logo.png",
+    shortcut: "/favicon.png",
   },
   manifest: "/manifest.json",
   appleWebApp: {
