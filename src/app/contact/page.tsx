@@ -49,34 +49,34 @@ export default function ContactPage() {
           <div className="grid gap-8 md:grid-cols-2">
             <div className="space-y-6 rounded-2xl border border-white/20 bg-gradient-to-br from-black/30 via-[#0a0a0a]/30 to-black/30 p-8 backdrop-blur-sm">
               <h2 className="font-serif text-2xl font-bold text-white">Contact Information</h2>
-            <div>
-              <p className="text-sm text-gray-400">Phone</p>
-              <a className="text-lg text-white" href="tel:+918092850954">
-                +91 80928 50954
-              </a>
+              <div>
+                <p className="text-sm text-gray-400">Phone</p>
+                <a className="text-lg text-white" href="tel:+918092850954">
+                  +91 80928 50954
+                </a>
+              </div>
+              <div>
+                <p className="text-sm text-gray-400">Address</p>
+                <p className="text-lg text-white">
+                  Ground floor, Shivaji Road,<br />
+                  Ramgarh Cantonment,<br />
+                  Jharkhand 829122
+                </p>
+              </div>
+              <div className="rounded-xl border border-white/20 bg-white/5 p-5 text-sm text-gray-300 backdrop-blur-sm">
+                <p className="font-semibold text-white mb-2">Business Hours</p>
+                <p>Mon–Sat · 9:00 AM – 7:00 PM IST</p>
+                <p>Sunday by appointment</p>
+              </div>
+              <Link
+                href="/"
+                className="group inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:scale-105"
+              >
+                <span className="flex items-center gap-2">
+                  ← Back to calculators
+                </span>
+              </Link>
             </div>
-            <div>
-              <p className="text-sm text-gray-400">Address</p>
-              <p className="text-lg text-white">
-                Ground floor, Shivaji Road,<br />
-                Ramgarh Cantonment,<br />
-                Jharkhand 829122
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/20 bg-white/5 p-5 text-sm text-gray-300 backdrop-blur-sm">
-              <p className="font-semibold text-white mb-2">Business Hours</p>
-              <p>Mon–Sat · 9:00 AM – 7:00 PM IST</p>
-              <p>Sunday by appointment</p>
-            </div>
-            <Link
-              href="/"
-              className="group inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:scale-105"
-            >
-              <span className="flex items-center gap-2">
-                ← Back to calculators
-              </span>
-            </Link>
-          </div>
           <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-white/20 bg-gradient-to-br from-black/30 via-[#0a0a0a]/30 to-black/30 p-8 backdrop-blur-sm">
             <div>
               <label className="text-sm text-gray-400" htmlFor="name">
@@ -133,6 +133,7 @@ export default function ContactPage() {
             </button>
             {status && <p className="rounded-xl border border-white/20 bg-white/10 px-5 py-4 text-sm text-white backdrop-blur-sm">{status}</p>}
           </form>
+          </div>
         </div>
       </div>
     </div>
