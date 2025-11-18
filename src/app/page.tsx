@@ -2,10 +2,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Calculate logo position - starts covering text, moves up as user scrolls
+  const logoTranslateY = Math.max(0, -scrollY * 0.6);
+  const textOpacity = Math.min(1, scrollY / 150); // Text fades in as logo moves up
+  const logoScale = Math.max(0.8, 1 - scrollY / 1000); // Logo slightly shrinks as it moves up
+
   return (
-    <div className="min-h-screen text-white relative overflow-hidden">
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="fixed inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -16,28 +33,44 @@ export default function Home() {
       
       <main className="relative mx-auto flex max-w-7xl flex-col gap-20 px-6 pb-32 pt-20">
         {/* Hero Section */}
-        <header className="relative rounded-[2rem] border border-white/20 bg-gradient-to-br from-black via-black to-[#0a0a0a] p-12 md:p-16 text-center backdrop-blur-sm shadow-2xl shadow-black/50">
-          {/* Decorative gradient overlay */}
-          <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none"></div>
-          
-          <div className="relative z-10">
-            <div className="mb-8 flex justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-white/10 blur-2xl rounded-full"></div>
-                <Image
-                  src="/White Logo.png"
-                  alt="Shiv Hardware Store Logo"
-                  width={220}
-                  height={220}
-                  className="relative object-contain drop-shadow-2xl"
-                  priority
-                />
-              </div>
-            </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/80 mb-2">
+        <header className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-black">
+          {/* Text that gets revealed - positioned behind logo */}
+          <div 
+            className="absolute inset-0 flex items-center justify-center z-10"
+            style={{ opacity: textOpacity }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white">
               Shiv Hardware Store
             </p>
-            <h1 className="mt-6 font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-white mb-6">
+          </div>
+
+          {/* Logo that covers text and moves up on scroll */}
+          <div 
+            className="absolute inset-0 flex items-center justify-center z-20 bg-black"
+            style={{ 
+              transform: `translateY(${logoTranslateY}px) scale(${logoScale})`,
+              transition: 'transform 0.1s ease-out'
+            }}
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-white/10 blur-2xl rounded-full"></div>
+              <Image
+                src="/White Logo.png"
+                alt="Shiv Hardware Store Logo"
+                width={400}
+                height={400}
+                className="relative object-contain drop-shadow-2xl"
+                priority
+              />
+            </div>
+          </div>
+          
+          {/* Content that appears after scroll */}
+          <div 
+            className="absolute bottom-0 left-0 right-0 text-center pb-20 z-30"
+            style={{ opacity: Math.min(1, (scrollY - 300) / 200) }}
+          >
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-white mb-6">
               Complete Hardware Solutions
               <span className="block mt-2 text-4xl md:text-5xl lg:text-6xl font-normal">for Modern Builders</span>
             </h1>
