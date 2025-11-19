@@ -31,7 +31,7 @@ export default function Home() {
         }}></div>
       </div>
       
-      <main className="relative mx-auto flex max-w-7xl flex-col gap-20 px-6 pb-32 pt-20">
+      <main className="relative mx-auto flex max-w-7xl flex-col gap-20 px-6 pb-32 pt-10">
         {/* Hero Section */}
         <header className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-black">
           {/* Text that gets revealed - positioned behind logo */}
@@ -96,7 +96,7 @@ export default function Home() {
         </header>
 
         {/* Calculator Cards Section */}
-        <section className="grid gap-8 md:grid-cols-3">
+        <section id="calculators" className="grid gap-8 md:grid-cols-3">
           <Link
             href="/aluminium-door"
             className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-black via-[#0a0a0a] to-black p-8 text-center transition-all duration-500 hover:border-white/40 hover:shadow-2xl hover:shadow-white/10 hover:-translate-y-2"

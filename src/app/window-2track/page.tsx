@@ -38,11 +38,14 @@ export default function Window2TrackPage() {
   const [brownCoated, setBrownCoated] = useState(false);
 
   // Rates for different thicknesses
-  const baseRates = {
-    "1.2 MM": { clear: 0, reflective: 20, chaukhat: 75 },
-    "1.6 MM": { clear: 50, reflective: 50, chaukhat: 85 },
-    "1.2 MM Hindalco": { clear: 40, reflective: 40, chaukhat: 85 },
-  };
+  const baseRates = useMemo(
+    () => ({
+      "1.2 MM": { clear: 0, reflective: 20, chaukhat: 75 },
+      "1.6 MM": { clear: 50, reflective: 50, chaukhat: 85 },
+      "1.2 MM Hindalco": { clear: 40, reflective: 40, chaukhat: 85 },
+    }),
+    []
+  );
 
   const [selectedThickness, setSelectedThickness] = useState<keyof typeof baseRates>("1.2 MM");
 
@@ -90,7 +93,7 @@ export default function Window2TrackPage() {
       heightDisplay,
       widthDisplay,
     };
-  }, [height, width, heightSoot, widthSoot, glassType, chaukhat, decorFilm, fullSSNet, brownCoated, selectedThickness]);
+  }, [height, width, heightSoot, widthSoot, glassType, chaukhat, decorFilm, fullSSNet, brownCoated, selectedThickness, baseRates]);
 
   const clearRate1_2 = calculations.baseRate + baseRates["1.2 MM"].clear;
   const clearRate1_6 = calculations.baseRate + baseRates["1.6 MM"].clear;
@@ -133,12 +136,33 @@ export default function Window2TrackPage() {
           </div>
         </div>
 
-        <div className="mb-8 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-2">2 Track Aluminium Sliding Window</h1>
+        <div className="glass-panel mb-8 px-6 py-8 text-center space-y-3">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold">2 Track Aluminium Sliding Window</h1>
+          <p className="text-white/70">
+            Configure glass packages, chaukhat grades, and finishes with estimator-grade clarity.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/60 mb-1">Area</p>
+              <p className="text-2xl font-semibold">{calculations.area} m²</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/60 mb-1">Glass rate</p>
+              <p className="text-2xl font-semibold">₹{Math.round(calculations.glassRate)}</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/60 mb-1">Chaukhat</p>
+              <p className="text-2xl font-semibold">₹{Math.round(calculations.chaukhatCost)}</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/60 mb-1">Total</p>
+              <p className="text-2xl font-semibold text-gradient">₹{Math.round(calculations.total)}</p>
+            </div>
+          </div>
         </div>
 
         {/* Input Section */}
-        <div className="mb-8 grid grid-cols-1 gap-6 border-2 border-white p-6 md:grid-cols-3">
+        <div className="glass-panel mb-8 grid grid-cols-1 gap-6 p-8 md:grid-cols-3">
           <div className="space-y-4">
             <div>
               <label className="mb-2 block text-sm font-medium">Operator Input</label>
@@ -261,7 +285,7 @@ export default function Window2TrackPage() {
         </div>
 
         {/* Results Table */}
-        <div className="mb-8 overflow-x-auto">
+        <div className="glass-panel mb-8 overflow-x-auto">
           <table className="w-full border-2 border-white">
             <thead>
               <tr className="border-b-2 border-white">
@@ -355,7 +379,8 @@ export default function Window2TrackPage() {
         {/* Add-ons Section */}
         <div className="mb-8">
           <h2 className="mb-4 text-xl font-bold">Add-ons</h2>
-          <table className="w-full border-2 border-white">
+          <div className="glass-panel overflow-x-auto p-2">
+          <table className="w-full">
             <tbody>
               <tr className="border-b border-white">
                 <td className="border-r-2 border-white p-2">Décor Film</td>
@@ -428,10 +453,11 @@ export default function Window2TrackPage() {
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
 
         {/* Print Layout Section */}
-        <div className="border-2 border-white p-6">
+        <div className="glass-panel p-6">
           <div className="mb-4 space-y-2">
             <div>
               <span className="font-bold">Size - </span>

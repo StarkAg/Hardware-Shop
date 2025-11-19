@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -60,10 +62,10 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
         <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
       </head>
-      <body
-        className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
-      >
-        {children}
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+        <Navbar />
+        <div className="pt-28">{children}</div>
+        <Footer />
       </body>
     </html>
   );

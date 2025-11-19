@@ -15,29 +15,32 @@ export default function AluminiumDoorPage() {
   const [brownCoated, setBrownCoated] = useState(false);
 
   // Rates for different thicknesses
-  const rates = {
-    "1.2 MM": {
-      door: 130,
-      chaukhat: 75,
-      accessories: 160,
-      decorFilm: 30,
-      brownCoated: 60,
-    },
-    "1.6 MM": {
-      door: 180,
-      chaukhat: 95,
-      accessories: 160,
-      decorFilm: 30,
-      brownCoated: 60,
-    },
-    "1.2 MM Hindalco": {
-      door: 150,
-      chaukhat: 85,
-      accessories: 160,
-      decorFilm: 30,
-      brownCoated: 60,
-    },
-  };
+  const rates = useMemo(
+    () => ({
+      "1.2 MM": {
+        door: 130,
+        chaukhat: 75,
+        accessories: 160,
+        decorFilm: 30,
+        brownCoated: 60,
+      },
+      "1.6 MM": {
+        door: 180,
+        chaukhat: 95,
+        accessories: 160,
+        decorFilm: 30,
+        brownCoated: 60,
+      },
+      "1.2 MM Hindalco": {
+        door: 150,
+        chaukhat: 85,
+        accessories: 160,
+        decorFilm: 30,
+        brownCoated: 60,
+      },
+    }),
+    []
+  );
 
   const [selectedThickness, setSelectedThickness] = useState<keyof typeof rates>("1.2 MM");
 
@@ -84,7 +87,7 @@ export default function AluminiumDoorPage() {
       heightDisplay,
       widthDisplay,
     };
-  }, [height, width, heightSoot, widthSoot, chaukhat, accessories, decorFilm, brownCoated, selectedThickness]);
+  }, [height, width, heightSoot, widthSoot, chaukhat, accessories, decorFilm, brownCoated, selectedThickness, rates]);
 
   return (
     <div className="min-h-screen text-white relative overflow-hidden">
@@ -120,13 +123,33 @@ export default function AluminiumDoorPage() {
           </div>
         </div>
 
-        <div className="mb-8 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-2">Bathroom Aluminium Door</h1>
-          <p className="text-gray-400 text-lg">With Chaukhat</p>
+        <div className="glass-panel mb-10 px-6 py-10 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-2">Bathroom Aluminium Door · Chaukhat Set</h1>
+          <p className="text-white/70">
+            Configure the complete door leaf package with chaukhat, accessories, and optional finishes.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left hover-lift">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/60 mb-1">Net area</p>
+              <p className="text-2xl font-semibold">{calculations.area} m²</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left hover-lift">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/60 mb-1">Chaukhat Rft</p>
+              <p className="text-2xl font-semibold">{calculations.chaukhatRft}</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left hover-lift">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/60 mb-1">Hardware Kit</p>
+              <p className="text-2xl font-semibold">₹{accessories ? 160 : 0}</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left hover-lift">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/60 mb-1">Projected total</p>
+              <p className="text-2xl font-semibold text-gradient">₹{Math.round(calculations.total)}</p>
+            </div>
+          </div>
         </div>
 
         {/* Input Section */}
-        <div className="mb-8 grid grid-cols-1 gap-6 rounded-2xl border border-white/20 bg-gradient-to-br from-black/50 via-[#0a0a0a]/50 to-black/50 p-8 backdrop-blur-sm shadow-2xl md:grid-cols-3">
+        <div className="glass-panel mb-8 grid grid-cols-1 gap-6 p-8 md:grid-cols-3">
           <div className="space-y-4">
             <div>
               <label className="mb-2 block text-sm font-medium">Operator Input</label>
@@ -238,7 +261,7 @@ export default function AluminiumDoorPage() {
         </div>
 
         {/* Results Table */}
-        <div className="mb-8 overflow-x-auto rounded-2xl border border-white/20 bg-gradient-to-br from-black/50 via-[#0a0a0a]/50 to-black/50 backdrop-blur-sm shadow-2xl">
+        <div className="glass-panel mb-8 overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b border-white/20">
@@ -347,7 +370,7 @@ export default function AluminiumDoorPage() {
         {/* Add-ons Section */}
         <div className="mb-8">
           <h2 className="mb-6 font-serif text-3xl font-bold">Add-ons</h2>
-          <div className="overflow-x-auto rounded-2xl border border-white/20 bg-gradient-to-br from-black/50 via-[#0a0a0a]/50 to-black/50 backdrop-blur-sm shadow-2xl">
+          <div className="glass-panel overflow-x-auto">
             <table className="w-full">
             <tbody>
               <tr className="border-b border-white">
@@ -402,7 +425,7 @@ export default function AluminiumDoorPage() {
         </div>
 
         {/* Print Layout Section */}
-        <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-black/50 via-[#0a0a0a]/50 to-black/50 p-8 backdrop-blur-sm shadow-2xl">
+        <div className="glass-panel p-8">
           <div className="mb-4 space-y-2">
             <div>
               <span className="font-bold">Size - </span>
